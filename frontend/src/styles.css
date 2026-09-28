@@ -9,6 +9,8 @@ body { margin: 0; min-width: 320px; background: radial-gradient(circle at top, #
 button, input { font: inherit; }
 .app { min-height: 100vh; padding: 28px; max-width: 1600px; margin: auto; }
 header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:22px; }
+.header-actions { display:flex; gap:10px; align-items:center; }
+.seed { border:1px solid #2c3852; background:#16213a; color:#b9c8e6; padding:8px 12px; border-radius:999px; font-size:12px; cursor:pointer; }
 .eyebrow,.label { font-size:11px; letter-spacing:.16em; color:#7e8eae; font-weight:700; }
 h1 { margin:4px 0 0; font-size:42px; letter-spacing:-.04em; }
 h1 span { color:#8ca8ff; }
