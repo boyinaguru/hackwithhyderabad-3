@@ -13,7 +13,7 @@ The product makes persistent memory visible and central:
 - Show the recalled memories in the UI so a judge can see why the response changed.
 - A one-click demo seed makes the memory progression reproducible.
 
-Hindsight provides the core Retain, Recall and Reflect operations; this MVP uses Retain + Recall directly and an LLM for response generation. citeturn0search0turn0search3
+Hindsight provides the core Retain, Recall and Reflect operations; this MVP uses Retain + Recall directly and an LLM for response generation.
 
 ## Demo story
 
@@ -58,7 +58,7 @@ Copy `.env.example` to `.env` and set:
 - `LLM_API_KEY`
 - `LLM_MODEL`
 
-Hindsight's current Python client is installed as `hindsight-client`; the official quickstart uses `Hindsight(base_url=...)` with `retain`, `recall`, and `reflect`. citeturn0search5
+Hindsight's current Python client is installed as `hindsight-client`; the official quickstart uses `Hindsight(base_url=...)` with `retain`, `recall`, and `reflect`.
 
 Start:
 
