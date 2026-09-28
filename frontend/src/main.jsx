@@ -48,7 +48,10 @@ function App() {
           <h1>MemoryDesk <span>AI</span></h1>
           <p>Support that remembers.</p>
         </div>
-        <div className="badge">● Hindsight Memory</div>
+        <div className="header-actions"><button className="seed" onClick={async () => {
+          await fetch(API + "/demo/seed", { method: "POST" });
+          setMemories([{id:"demo-seed-1", type:"experience", text:"Previous Wi-Fi issue → driver reinstall successfully resolved it."}]);
+        }}>Seed demo memory</button><div className="badge">● Hindsight Memory</div></div>
       </header>
 
       <main className="grid">
