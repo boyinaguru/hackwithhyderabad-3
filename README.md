@@ -1,49 +1,105 @@
 # MemoryDesk AI
 
-A hackathon MVP for HackwithHyderabad 3.0: a customer-support AI agent that uses persistent Hindsight memory to remember customer history, previous fixes, preferences, and unresolved issues.
+> **HackwithHyderabad 3.0 — persistent-memory customer support agent**
 
-## Core demo
-1. Start with a customer who has no useful remembered context.
-2. Record one or more support interactions.
-3. Retain important facts into Hindsight.
-4. Ask a related question later.
-5. Recall relevant memory.
-6. Produce a more personalized response.
-7. Show the memory timeline in the UI.
+MemoryDesk is a focused AI support workflow: it remembers customer history, previous troubleshooting attempts, successful fixes and preferences, then uses that context in later conversations.
+
+## Why this fits the challenge
+
+The product makes persistent memory visible and central:
+- **Retain** meaningful support interactions in Hindsight.
+- **Recall** relevant history before responding.
+- Use recalled context to personalize the next response.
+- Show the recalled memories in the UI so a judge can see why the response changed.
+- A one-click demo seed makes the memory progression reproducible.
+
+Hindsight provides the core Retain, Recall and Reflect operations; this MVP uses Retain + Recall directly and an LLM for response generation. citeturn0search0turn0search3
+
+## Demo story
+
+1. Open **Rahul Sharma**.
+2. Click **Seed demo memory**.
+3. Ask: **“It happened again.”**
+4. Point to the memory panel.
+5. Explain that Hindsight recalled the previous Wi-Fi issue and the successful driver-reinstall fix.
+6. Ask a second related question and show that the agent avoids starting from generic troubleshooting.
 
 ## Architecture
 
-Frontend (React/Vite) -> FastAPI backend -> Agent orchestration -> Hindsight memory + LLM
+```
+React UI
+  │
+  ▼
+FastAPI Support Agent
+  ├── Hindsight Retain  ──► persistent memory bank
+  ├── Hindsight Recall  ◄── relevant customer history
+  └── LLM              ──► personalized response
+```
 
-## Tech
-- Python / FastAPI
-- React + Vite
-- Hindsight
-- OpenAI-compatible LLM API (Groq or another provider)
-- In-memory demo data for customer profiles
+## Run locally
 
-## Environment
-Copy `.env.example` to `.env` and configure your Hindsight and LLM settings.
+### 1. Backend
 
-## Run backend
 ```bash
 cd backend
 python -m venv .venv
-# Windows: .venv\\Scripts\\activate
-# macOS/Linux: source .venv/bin/activate
+# Windows
+.venv\\Scripts\\activate
+# macOS/Linux
+# source .venv/bin/activate
+
 pip install -r requirements.txt
+```
+
+Copy `.env.example` to `.env` and set:
+- `HINDSIGHT_BASE_URL`
+- `HINDSIGHT_API_KEY`
+- `HINDSIGHT_BANK_ID`
+- `LLM_API_KEY`
+- `LLM_MODEL`
+
+Hindsight's current Python client is installed as `hindsight-client`; the official quickstart uses `Hindsight(base_url=...)` with `retain`, `recall`, and `reflect`. citeturn0search5
+
+Start:
+
+```bash
 uvicorn app.main:app --reload --port 8000
 ```
 
-## Run frontend
+### 2. Frontend
+
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
 
-## Hackathon alignment
-The project is intentionally narrow: one persona, one workflow, one clear value proposition, with memory central to the product experience.
+Open the Vite URL, normally `http://localhost:5173`.
 
-## Important
-Never commit API keys. Use `.env`.
+## Repository layout
+
+```
+backend/
+  app/
+    agent.py
+    hindsight.py
+    main.py
+    models.py
+    demo_data.py
+frontend/
+  src/
+    main.jsx
+    styles.css
+docs/
+  ARCHITECTURE.md
+  DEMO_SCRIPT.md
+  SUBMISSION.md
+```
+
+## Environment and security
+
+Never commit API keys. Use `.env`, which is ignored by Git.
+
+## Scope
+
+One workflow, one persona, one clear value proposition: **support that remembers**. The prototype intentionally avoids unrelated features so the memory behavior is easy to demonstrate.
